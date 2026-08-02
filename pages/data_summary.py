@@ -4,6 +4,7 @@ from data import get_data
 st.title("📋 Data Summary")
 
 st.markdown("---")
+
 # To highlight the metric containers
 st.markdown("""
     <style>
@@ -23,7 +24,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Fetches instantly from RAM cache, no re-reading from disk
+# Fetch instantly from RAM cache
 df = get_data()
 
 st.subheader("📊 Cleaned Data Dashboard Hub")
@@ -36,7 +37,7 @@ st.write(
     """
 )
 
-# -----------------------------------------------------------------------------
+#=====================================================================================================================
 
 _rows, _columns = df.shape
 
@@ -54,7 +55,7 @@ col2.metric("Total Columns Loaded", _columns)
 st.text("")
 st.markdown("---")
 
-# -----------------------------------------------------------------------------
+#=====================================================================================================================
 
 st.text("")
 st.text("")
@@ -70,7 +71,7 @@ st.dataframe(df.head(10))
 
 st.markdown("---")
 
-# -----------------------------------------------------------------------------
+#=====================================================================================================================
 
 st.write("### 📈 Summary Statistics")
 
@@ -84,7 +85,7 @@ st.dataframe(df.describe())
 
 st.markdown("---")
 
-# -----------------------------------------------------------------------------
+#=====================================================================================================================
 
 st.write("### 🔍 Missing Values Check")
 
@@ -92,14 +93,13 @@ st.write(
     "A final validation is performed to confirm that the cleaned dataset "
     "contains no remaining missing values before analysis."
 )
+
 # Convert the missing values series into a DataFrame
 missing_data = df.isnull().sum().reset_index()
 
-# Rename the columns to your requirements
 missing_data.columns = ['Column', 'Count']
 
-# Display the clean table in Streamlit
+# Display clean table in Streamlit
 st.dataframe(missing_data, use_container_width=True)
-
 
 st.markdown("---")

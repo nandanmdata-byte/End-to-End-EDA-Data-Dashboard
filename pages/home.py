@@ -1,13 +1,11 @@
-# views/home.py
+
 import streamlit as st
 import pandas as pd
 from PIL import Image
 from data import get_data
 
-# st.title("🏠 Retail Sales Web App")
 
-
-image = Image.open("images/13744794_Mar-Business_2.jpg")
+image = Image.open("assets/13744794_Mar-Business_2.jpg")
 
 st.image(image, width=400)
 
@@ -142,7 +140,9 @@ st.code("""
 project/
 │
 ├── datasets/           # Raw and cleaned datasets
-├── cleaning/           # Data cleaning scripts
+    |__raw_datasets/
+    |__clean_datasets/    
+├── scripts/           # Data cleaning scripts
 ├── pages/              # Streamlit pages
 ├── assets/             # Images and icons
 ├── app.py              # Main Streamlit application

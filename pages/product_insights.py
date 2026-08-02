@@ -2,9 +2,7 @@ import streamlit as st
 from data import get_data
 import plotly.express as px
 
-
 st.title("📦 Product Performance")
-
 
 st.markdown("""
     <style>
@@ -24,7 +22,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
 st.write("Here, we will have a look at the overall product sales and performance." )
 
 df = get_data()
@@ -35,6 +32,7 @@ df = get_data()
 unique_items = df['item'].nunique()
 max_price = df['price_per_unit'].max()
 
+# Unique item , max price
 col1, col2 = st.columns(2)
 col1.metric("Unique Items Active", f"{unique_items}")
 col2.metric("Max Item Price", f"${max_price:,.2f}")
@@ -44,17 +42,34 @@ st.markdown("---")
 # Visualizations
 #===================================================================================================================================
 
+# Top Selling Quantities - bar chart
 st.subheader("Top 5 Best Selling Items (by Quantity)")
+
 top_items = df.groupby('item')['quantity'].sum().reset_index().sort_values(by='quantity', ascending=False).head(5)
-fig_items = px.bar(top_items, x='item', y='quantity', color='quantity', template='plotly_white')
+
+fig_items = px.bar(
+                top_items,
+                x='item', 
+                y='quantity', 
+                color='quantity', 
+                template='plotly_white')
+
 st.plotly_chart(fig_items, use_container_width=True)
 
 st.markdown("---")
 
 #===================================================================================================================================
 
+# Price vs Demand chart
 st.subheader("Price vs. Quantity Demand")
-fig_scatter = px.scatter(df, x='price_per_unit', y='quantity', color='category', hover_data=['item'], opacity=0.6)
+
+fig_scatter = px.scatter(
+                 df, 
+                 x='price_per_unit', 
+                 y='quantity', 
+                 color='category', 
+                 hover_data=['item'], 
+                 opacity=0.6)
 st.plotly_chart(fig_scatter, use_container_width=True)
 
 st.markdown("---")

@@ -6,11 +6,11 @@ st.set_page_config(layout="wide")
 side_head = st.sidebar.header(" 🛒 Retail Sales App")
 
 # Point directly to page files inside the pages folder
-home_page = st.Page("views/home.py", title="Home", icon="🏠", default=True)
-data_summary = st.Page("views/data_summary.py", title="Data Summary", icon="📊")
-sales_insights = st.Page("views/sales_insights.py", title = "Sales insights", icon = "🛒")
-customer_insights = st.Page("views/customer_insights.py", title = "Customer insights", icon = "👤")
-product_performance = st.Page("views/product_insights.py", title = "Product Metrics", icon = "📦")
+home_page = st.Page("pages/home.py", title="Home", icon="🏠", default=True)
+data_summary = st.Page("pages/data_summary.py", title="Data Summary", icon="📊")
+sales_insights = st.Page("pages/sales_insights.py", title = "Sales insights", icon = "🛒")
+customer_insights = st.Page("pages/customer_insights.py", title = "Customer insights", icon = "👤")
+product_performance = st.Page("pages/product_insights.py", title = "Product Metrics", icon = "📦")
 
 
 # Initialize navigation menu
