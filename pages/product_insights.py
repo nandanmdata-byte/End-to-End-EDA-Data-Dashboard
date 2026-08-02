@@ -60,21 +60,63 @@ st.markdown("---")
 
 #===================================================================================================================================
 
-# Price vs Demand chart
-st.subheader("Price vs. Quantity Demand")
+st.subheader("Price vs. Average Quantity Purchased")
 
-fig_scatter = px.scatter(
-                 df, 
-                 x='price_per_unit', 
-                 y='quantity', 
-                 color='category', 
-                 hover_data=['item'], 
-                 opacity=0.6)
-st.plotly_chart(fig_scatter, use_container_width=True)
+# Category selector
+categories = sorted(df["category"].unique())
+
+selected_category = st.selectbox(
+    "Select a Category",
+    categories
+)
+
+# Filter data
+filtered_df = df[df["category"] == selected_category]
+
+
+summary = (
+    filtered_df
+    .groupby("price_per_unit", as_index=False)
+    .agg(
+        avg_quantity=("quantity", "mean"),
+        transactions=("quantity", "count")
+    )
+)
+
+fig = px.scatter(
+        summary,
+        x="price_per_unit",
+        y="avg_quantity",
+        size="transactions",   # Bubble size
+        hover_name="price_per_unit",
+        hover_data={
+            "transactions": True,
+            "avg_quantity": ":.2f",
+            "price_per_unit": False
+        },
+        trendline="ols",
+        trendline_color_override="red",
+        title=f"Price vs Average Quantity Purchased - {selected_category}"
+)
+
+fig.update_layout(
+    title_x=0.5,
+    xaxis_title="Price per Unit ($)",
+    yaxis_title="Average Quantity Purchased",
+    template="plotly_white"
+)
+
+st.plotly_chart(fig, use_container_width=True)
+
+st.caption(
+    "Bubble size represents the number of transactions at each price level."
+)
 
 st.markdown("---")
 
 #===================================================================================================================================
+
+# Revenuw Contribution by Product Category Tree Map
 
 st.subheader("📦 Revenue Contribution by Product Category")
 # Aggregate revenue by category
@@ -86,12 +128,12 @@ category_sales = (
 
 # Create treemap
 fig = px.treemap(
-    category_sales,
-    path=["category"],
-    values="total_spent",
-    color="total_spent",
-    color_continuous_scale="Blues",
-    title="Revenue Contribution by Product Category"
+        category_sales,
+        path=["category"],
+        values="total_spent",
+        color="total_spent",
+        color_continuous_scale="Blues",
+        title="Revenue Contribution by Product Category"
 )
 
 fig.update_traces(

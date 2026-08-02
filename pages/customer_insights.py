@@ -62,7 +62,25 @@ top_spenders = top_spenders.sort_values(by='total_spent', ascending=False).reset
 
 st.dataframe(top_spenders.style.format({'total_spent': '${:,.2f}'}), use_container_width=True)
 
-st.markdown("---")
+
+fig_top_cust = px.bar(
+                top_spenders,
+                x = "customer_id",
+                y = "visit_count",
+                title="Visit Frequency of Top 10 Spenders",
+                labels={
+                    "customer_id": "Customer ID",
+                    "visit_count": "Total Visits"
+                },
+                color_discrete_sequence=['#60f252']
+
+)
+
+fig_top_cust.update_layout(
+   
+    title_x=0.5                 
+)
+st.plotly_chart(fig_top_cust)
 
 #=====================================================================================================
 
@@ -110,5 +128,39 @@ with col2:
     else:
         st.markdown(f"**Insight:** You have **{purc_counts['4+']:,}** highly loyal repeat shoppers (4+ purchases),"
                     f" alongside **{one_to_three_count:,}** lower-frequency shoppers who could be targeted for retention campaigns.")
-        
+
+
+st.markdown("---")
 #=====================================================================================================
+
+# Customer spending Distribution
+
+st.subheader("💰 Customer Spending Distribution")
+
+customer_spending = (
+        df.groupby("customer_id")["total_spent"]
+        .sum()
+        .reset_index()
+)
+
+# Histogram
+fig = px.histogram(
+        customer_spending,
+        x="total_spent",
+        nbins=10,
+        title="Distribution of Customer Spending",
+        labels={
+            "Total Spent": "Total Spending",
+            "count": "Number of Customers"
+        },
+        color_discrete_sequence=['#60f252']
+)
+
+fig.update_layout(
+        xaxis_title="Total Spending",
+        yaxis_title="Number of Customers",
+        bargap=0.1,
+        title_x=0.5
+)
+
+st.plotly_chart(fig, use_container_width=True)
