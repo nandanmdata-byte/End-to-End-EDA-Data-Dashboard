@@ -14,7 +14,13 @@ product_performance = st.Page("pages/product_insights.py", title = "Product Metr
 
 
 # Initialize navigation menu
-pg = st.navigation([home_page, data_summary, sales_insights, customer_insights, product_performance])
+pg = st.navigation(
+    [home_page, 
+     data_summary, 
+     sales_insights, 
+     customer_insights, 
+     product_performance]
+)
 
 # Render selected page content
 pg.run()

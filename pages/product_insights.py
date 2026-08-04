@@ -1,26 +1,10 @@
 import streamlit as st
-from data import get_data
+from data import get_data, metric_card_style, custom_styled_df
 import plotly.express as px
 
 st.title("📦 Product Performance")
 
-st.markdown("""
-    <style>
-    /* Style every metric card container */
-    [data-testid="stMetric"] {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    /* Style the metric label text */
-    [data-testid="stMetricLabel"] {
-        font-weight: 600;
-        color: #495057;
-    }
-    </style>
-""", unsafe_allow_html=True)
+metric_card_style()
 
 st.write("Here, we will have a look at the overall product sales and performance." )
 
@@ -137,19 +121,20 @@ fig = px.treemap(
 )
 
 fig.update_traces(
-    textinfo="label+value+percent root"
+        textinfo="label+value+percent root"
 )
 
 fig.update_layout(
-    margin=dict(t=50, l=25, r=25, b=25),
-    title_x=0.5
+        margin=dict(t=50, l=25, r=25, b=25),
+        title_x=0.5
 )
 
 st.plotly_chart(fig, use_container_width=True)
 
+df1 = custom_styled_df(category_sales, ["total_spent"], [])
 # Display data table
 st.dataframe(
-    category_sales,
-    use_container_width=True,
-    hide_index=True
+        df1, 
+        use_container_width=True, 
+        hide_index=True
 )

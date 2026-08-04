@@ -2,35 +2,16 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import numpy as np
-from data import get_data
+from data import get_data, metric_card_style, custom_styled_df
 
-st.title("👤 Customer Insights")
-
+st.title("👥 Customer Value & Behavior Analytics")
+st.markdown("""
+Comprehensive breakdown of consumer buying habits, purchasing frequency, and individual lifetime value (LTV). 
+Use this diagnostic section to identify your highest-value accounts and optimize loyalty retention strategies.
+""")
 # page layout design using css
 
-st.markdown("""
-    <style>
-    /* Style every metric card container */
-    [data-testid="stMetric"] {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    /* Style the metric label text */
-    [data-testid="stMetricLabel"] {
-        font-weight: 600;
-        color: #495057;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-
-
-st.write("Here, we will have a look at the overall customer insights and impacts." \
-"Like top performing customers, bottom performing customers etc.")
-
+metric_card_style()
 
 df = get_data()
 
@@ -60,8 +41,9 @@ top_spenders = df.groupby('customer_id')['total_spent'].agg(['sum', 'count']).re
 top_spenders.columns = ['customer_id', 'total_spent', 'visit_count']
 top_spenders = top_spenders.sort_values(by='total_spent', ascending=False).reset_index(drop = True).head(10)
 
-st.dataframe(top_spenders.style.format({'total_spent': '${:,.2f}'}), use_container_width=True)
+df1 = custom_styled_df(top_spenders, ["total_spent"], ["visit_count"])
 
+st.dataframe(df1, use_container_width=True)
 
 fig_top_cust = px.bar(
                 top_spenders,

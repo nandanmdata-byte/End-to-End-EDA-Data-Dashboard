@@ -1,28 +1,12 @@
 import streamlit as st
-from data import get_data
+from data import get_data, metric_card_style, custom_styled_df
 
 st.title("📋 Data Summary")
 
 st.markdown("---")
 
 # To highlight the metric containers
-st.markdown("""
-    <style>
-    /* Style every metric card container */
-    [data-testid="stMetric"] {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    /* Style the metric label text */
-    [data-testid="stMetricLabel"] {
-        font-weight: 600;
-        color: #495057;
-    }
-    </style>
-""", unsafe_allow_html=True)
+metric_card_style()
 
 # Fetch instantly from RAM cache
 df = get_data()
@@ -102,4 +86,9 @@ missing_data.columns = ['Column', 'Count']
 # Display clean table in Streamlit
 st.dataframe(missing_data, use_container_width=True)
 
+st.markdown("With that, we can move on to the next pages for the analytical part. " \
+"" \
+"The analysis is divided into three pages, each one for **sales**, **customers** and **products**. " \
+"" \
+"Explore those pages for the different insights that was found from this cleaned data.")
 st.markdown("---")
