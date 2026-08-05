@@ -220,6 +220,9 @@ with st.container(border=True):
             value="Butchers", 
             delta="13% Share ($208,118)"
         )
+
+    # Variance = Highest share - lowest share
+    # Varince = 13% - 12%
     with col2:
         st.metric(
             label="Revenue Spread Variance", 
@@ -273,9 +276,7 @@ with st.container(border=True):
             """
         )
 
-st.markdown("---")
-
-st.markdown("##### Above data in tabular form")
+st.markdown("###### * Above data in tabular form")
 df1 = custom_styled_df(category_sales, ["total_spent"], [])
 # Display data table
 st.dataframe(

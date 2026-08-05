@@ -7,10 +7,10 @@ from data import get_data, metric_card_style, custom_styled_df
 st.title("👥 Customer Value & Behavior Analytics")
 st.markdown("""
 Comprehensive breakdown of consumer buying habits, purchasing frequency, and individual lifetime value (LTV). 
-Use this diagnostic section to identify your highest-value accounts and optimize loyalty retention strategies.
+Use this diagnostic section to identify the highest-value accounts and optimize loyalty retention strategies.
 """)
-# page layout design using css
 
+# metric column design using css
 metric_card_style()
 
 df = get_data()
@@ -28,6 +28,37 @@ col1, col2, col3 = st.columns(3)
 col1.metric("Unique Customers", f"{unique_cust:,}")
 col2.metric("Average Units Per Basket", f"{avg_qty:.1f}")
 col3.metric("Average Spend Per Customer", f"${avg_spend_per_customer:.1f}")
+
+# deep - dive analysis
+
+st.markdown("### 📊 Customer Behavior & Purchase Insights")
+
+with st.status("Analysis"):
+    left_col , right_col = st.columns(2)
+
+    with left_col:
+        st.markdown("##### 🔍 Engagement Observations")
+        st.markdown(
+            f"""
+            * **Active Customer Base:** The platform successfully engaged **{unique_cust:,}** 
+            unique purchasing customers over this reporting period.
+
+            * **Steady Transaction Volume:** Baskets maintain a consistent size with an average volume of **{avg_qty:.1f}
+            units** per transaction.
+            """
+        )
+
+    with right_col:
+        st.markdown("##### 💡 Value Takeaways")
+        st.markdown(
+            f"""
+            * **Customer Lifetime Value:** Individual customers yield a solid average spend profile of 
+            **${avg_spend_per_customer:.2f}** across their interactions.
+
+            * **Monetization Strategy:** Future campaigns should target increasing the units per basket 
+            to efficiently scale the average customer value.
+            """
+        )
 
 st.markdown(" --- ")
 

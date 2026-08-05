@@ -22,7 +22,7 @@ def metric_card_style():
     /* Style the metric label text */
     [data-testid="stMetricLabel"] {
         font-weight: 600;
-        color: #495057;
+        color: #0c47a6;
     }
     </style>
 """, unsafe_allow_html=True)
