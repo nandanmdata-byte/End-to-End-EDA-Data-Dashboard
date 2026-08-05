@@ -139,12 +139,14 @@ with st.status("📊 Statistical Interpretation Engine", expanded=True) as statu
     
     if correlation >= 0.7:
         st.markdown("##### 🚀 Strong Positive Correlation")
+        
         st.write("Prices and quantities move upwards together tightly. " \
         "Customers heavily favor high-tier premium options in large volumes.")
         status.update(label="Analysis: Strong Positive Trend", state="complete")
         
     elif 0.3 <= correlation < 0.7:
         st.markdown("##### 📈 Moderate Positive Correlation")
+
         st.write("The trendline shows a steady positive slope. " \
         "As prices increase, customers generally purchase larger quantities, " \
         "suggesting strong brand power or low price sensitivity.")
@@ -152,6 +154,7 @@ with st.status("📊 Statistical Interpretation Engine", expanded=True) as statu
         
     elif -0.3 < correlation < 0.3:
         st.markdown("##### ⚖️ Inelastic Demand (No Correlation)")
+
         st.write("The trendline is flat. " \
         "Purchasing volumes remain completely steady across all price fluctuations, " \
         "meaning price variations do not change customer buying habits.")
@@ -159,12 +162,14 @@ with st.status("📊 Statistical Interpretation Engine", expanded=True) as statu
         
     elif -0.7 < correlation <= -0.3:
         st.markdown("##### 📉 Moderate Negative Correlation")
+
         st.write("Higher-priced items show a clear drop-off in order size. " \
         "Price sensitivity is active here; consider promotions or smaller packaging sizes.")
         status.update(label="Analysis: Moderate Negative Trend", state="complete")
         
     else:
         st.markdown("##### 🛑 Strong Negative Correlation")
+
         st.write("Classic price elasticity is present. Volume decays rapidly as prices rise. " \
         "High pricing strongly discourages larger customer baskets.")
         status.update(label="Analysis: Strong Negative Trend", state="complete")
