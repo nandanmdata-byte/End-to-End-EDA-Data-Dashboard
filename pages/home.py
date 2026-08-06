@@ -13,8 +13,8 @@ st.title("🏠 Retail Sales Web App 📊")
 
 st.markdown("""Welcome!
 
-This web application was developed using Streamlit as part of my **End-to-End Retail Sales EDA Dashboard** project. 
-It presents a comprehensive exploratory data analysis (EDA) of a retail sales dataset, 
+This web application was developed using Streamlit as part of my **End-to-End EDA Dashboard** project. 
+It presents a comprehensive exploratory data analysis (EDA) of a retail store sales dataset, 
 highlighting key business insights through interactive visualizations and reports.
 
 The raw dataset was cleaned and preprocessed using **Pandas**, **NumPy**, 
@@ -53,9 +53,14 @@ st.markdown(
 )
 
 st.markdown("""
-* **Centralize data:** Clean and preprocess the raw retail sales CSV dataset using **Pandas**, **NumPy**, and other Python libraries to create a reliable, analysis-ready dataset.
-* **Exploratory Data Analysis (EDA):** Analyze customer demographics, purchasing behavior, and product performance through interactive visualizations and statistical insights.
-* **Interactive Dashboard:** Build an intuitive Streamlit dashboard with KPIs, filters, and visualizations to explore sales trends, customer demographics, and product performance.
+* **Centralize data:** Clean and preprocess the raw retail sales CSV dataset using **Pandas**, **NumPy**,
+ and other Python libraries to create a reliable, analysis-ready dataset.
+
+* **Exploratory Data Analysis (EDA):** Analyze customer demographics, purchasing behavior,
+ and product performance through interactive visualizations and statistical insights.
+
+* **Interactive Dashboard:** Build an intuitive Streamlit dashboard with KPIs, filters,
+ and visualizations to explore sales trends, customer demographics, and product performance.
 """)
 
 #=====================================================================================================================
@@ -137,16 +142,18 @@ st.markdown(
 )
 
 st.code("""
-project/
+End-to-End_EDA_Dashboard/
 │
 ├── datasets/           # Raw and cleaned datasets
     |__raw_datasets/
     |__clean_datasets/    
-├── scripts/           # Data cleaning scripts
+├── scripts/            # Data cleaning scripts
+├── docs/               # documentations
 ├── pages/              # Streamlit pages
 ├── assets/             # Images and icons
+├── data.py             # access to clean data source 
 ├── app.py              # Main Streamlit application
-├── requirements.txt
+├── LICENSE             # MIT License
 └── README.md
 """, language="text")
 
@@ -164,11 +171,11 @@ st.markdown(
 st.markdown("""
 - **Programming Language:** Python
 - **Data Processing:** Pandas, NumPy
-- **Data Visualization:** Plotly, Matplotlib, and Seaborn
+- **Data Visualization:** Plotly
 - **Dashboard Framework:** Streamlit
-- **Development Environment:** VS Code
+- **Development Environment:** VS Code, Pycharm
 - **Version Control:** Git & GitHub
-- **Research & Documentation:** Kaggle, Python Documentation, and Google
+- **Research & Documentation:** Kaggle, Python Documentation, [discuss streamlit](https://discuss.streamlit.io/) and Google
 """)
 
 #=====================================================================================================================
@@ -183,9 +190,14 @@ st.markdown(
 )
 
 st.markdown("""
-Hello! I'm **Nandan M**, an **M.Sc. Physics graduate** transitioning into **Data Science**. My background in physics has strengthened my analytical thinking, problem-solving abilities, and passion for extracting meaningful insights from data.
+Hello! I'm **Nandan M**, an **M.Sc. Physics graduate** transitioning into **Data Science**. 
+I am currently doing a data science internship at Luminar Technolab Kochi, Kerala, India. 
+My background in physics has strengthened my analytical thinking, problem-solving abilities, and passion for extracting meaningful insights from data.
 
-This project demonstrates my skills in **data cleaning**, **exploratory data analysis (EDA)**, **data visualization**, and **interactive dashboard development** using Python and Streamlit.
+This project demonstrates my skills in **data cleaning**,
+ **exploratory data analysis (EDA)**, **data visualization**, and **interactive dashboard development** using Python and Streamlit.
+
+**My linkedIn profile:** 
 """)
 
 #=====================================================================================================================
@@ -200,17 +212,17 @@ st.markdown(
 )
 
 st.markdown("""
-This project is licensed under the **MIT License**.
+This project is licensed under the [**MIT License**](End-to-End-EDA-Data-Dashboard/LICENSE)
 
 You are free to use, modify, and distribute this project for personal or commercial purposes in accordance with the terms of the license.
 """)
 
 #=====================================================================================================================
 
-
-
-#=====================================================================================================================
-
-
+st.markdown("---")
+st.markdown(
+    "<div style='text-align: center; font-size: 28px; font-weight: bold;'>🫶 Thank you for visiting</div>",
+    unsafe_allow_html=True
+)
 
 #=====================================================================================================================

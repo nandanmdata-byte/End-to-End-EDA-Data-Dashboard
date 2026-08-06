@@ -191,61 +191,11 @@ st.markdown(
     """
 )
 
-st.markdown("---")
-
-#=====================================================================================================
-
-# Customer loyalty : One-Time Buyers vs. Repeat Customers
-# Custom colored underline with spacing
-st.subheader("🤝 Customer loyalty : One-Time Buyers vs Repeat Customers")
-
-cust_pur_count = df.groupby("customer_id")["total_spent"].count()
-
-categories = np.select(
-                  [cust_pur_count == 1, cust_pur_count == 2, cust_pur_count == 3, cust_pur_count >= 4],
-                  ["1 purchase", "2 purchases", "3 purchases", "4+"],
-                  default="Unknown"
-)
-
-count_labels = ["1 purchase", "2 purchases", "3 purchases", "4+"]
-
-purc_counts = pd.Series(categories).value_counts().reindex(count_labels, fill_value=0)
-
-pur_fig = px.bar(
-    x = purc_counts.index,
-    y = purc_counts.values,
-    template='plotly_white'
-)
-
-pur_fig.update_layout(
-    xaxis_title="Purchase Frequency Category",
-    yaxis_title="Number of Customers",
-    showlegend=False
-)
-col1, col2 = st.columns(2)
-with col1:
-  st.plotly_chart(pur_fig, use_container_width=True, key = "customer loyalty chart")
-  
-with col2:
-    
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    
-    # Calculating exact counts programmatically, so that the text never contradicts with the database updation
-    one_to_three_count = purc_counts["1 purchase"] + purc_counts["2 purchases"] + purc_counts["3 purchases"]
-    
-    if one_to_three_count == 0:
-        st.markdown("**Insight:** Customers with less than 4 purchases are exactly none. " \
-        "That means they are extremely loyal to purchase 4+ times at our store.")
-    else:
-        st.markdown(f"**Insight:** You have **{purc_counts['4+']:,}** highly loyal repeat shoppers (4+ purchases),"
-                    f" alongside **{one_to_three_count:,}** lower-frequency shoppers who could be targeted for retention campaigns.")
-
 
 st.markdown("---")
 #=====================================================================================================
 
 # Customer spending Distribution
-
 st.subheader("💰 Customer Spending Distribution")
 
 customer_spending = (
@@ -259,19 +209,33 @@ fig = px.histogram(
         customer_spending,
         x="total_spent",
         nbins=10,
-        title="Distribution of Customer Spending",
         labels={
-            "Total Spent": "Total Spending",
-            "count": "Number of Customers"
+            "total_spent": "Total Spending ($)"  
         },
         color_discrete_sequence=['#60f252']
 )
 
 fig.update_layout(
-        xaxis_title="Total Spending",
+        xaxis_title="Total Spending ($)",
         yaxis_title="Number of Customers",
         bargap=0.1,
-        title_x=0.5
+        template='plotly_white' 
 )
 
-st.plotly_chart(fig, use_container_width=True)
+# st.plotly_chart(fig, use_container_width=True, key="customer_spending_distribution")
+
+col1, col2 = st.columns([2, 1]) # Allocates more width to the chart
+
+with col1:
+    st.plotly_chart(fig, use_container_width=True, key="customer_spending_distribution")
+
+with col2:
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    # Calculate top stats programmatically
+    max_spender = customer_spending.loc[customer_spending['total_spent'].idxmax()]
+    avg_spend = customer_spending['total_spent'].mean()
+    
+    st.markdown(f"**Key Spend Insights:**")
+    st.markdown(f"* **Average Lifetime Spend:** ${avg_spend:,.2f} per customer.")
+    st.markdown(f"* **Top VIP Customer:** `{max_spender['customer_id']}` has contributed a massive **${max_spender['total_spent']:,.2f}** in revenue!")
