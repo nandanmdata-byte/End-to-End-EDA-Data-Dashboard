@@ -31,6 +31,7 @@ expanded_bar = st.expander("About")
 expanded_bar.markdown(""" 
 * **Python libraries:** pandas, numpy, streamlit, PIL
 * **Raw data source:** [Link for raw data source from kaggle](https://www.kaggle.com/datasets/ahmedmohamed2003/retail-store-sales-dirty-for-data-cleaning)                   
+* **Github link:** [End_to-End-EDA_Dashboard](https://github.com/nandanmdata-byte/End-to-End-EDA-Data-Dashboard.git)
 * *Note: The data used for reporting is a cleaned version of above raw data* """)
 
 
@@ -197,7 +198,7 @@ My background in physics has strengthened my analytical thinking, problem-solvin
 This project demonstrates my skills in **data cleaning**,
  **exploratory data analysis (EDA)**, **data visualization**, and **interactive dashboard development** using Python and Streamlit.
 
-**My linkedIn profile:** 
+**My linkedIn profile:** [LinkedIn Profile](https://www.linkedin.com/in/nandan-m-ds/)
 """)
 
 #=====================================================================================================================
@@ -212,7 +213,7 @@ st.markdown(
 )
 
 st.markdown("""
-This project is licensed under the [**MIT License**](End-to-End-EDA-Data-Dashboard/LICENSE)
+This project is licensed under the [**MIT License**](https://github.com/nandanmdata-byte/End-to-End-EDA-Data-Dashboard/blob/main/LICENSE)
 
 You are free to use, modify, and distribute this project for personal or commercial purposes in accordance with the terms of the license.
 """)
@@ -226,3 +227,4 @@ st.markdown(
 )
 
 #=====================================================================================================================
+
