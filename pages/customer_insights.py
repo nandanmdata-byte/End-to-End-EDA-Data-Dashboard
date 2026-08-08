@@ -92,9 +92,12 @@ with st.container(border = True):
         st.markdown("""
             ##### 📌Key Metrics Defined: 
 
-            * **customer_id:** Unique identifier for each specific buyer. 
+            * **customer_id:** Unique identifier for each specific buyer.
+            
             * **total_spent:** Cumulative total amount spent by the customer. 
+
             * **visit_count:** Total number of separate transactions or store visits.
+            
         """)
 
     with r_col:
@@ -161,9 +164,7 @@ st.markdown(
     and loyal as the absolute top spenders.
     
     * **Identification of High-Value "Whales":**
-    Look at `CUST_08` and `CUST_12`. Their visit counts drop significantly (sharp dips in the orange line),
-    yet they maintain incredibly high total spend.
-
+    Look at `CUST_05` and `CUST_13`. They maintain a high total spend despite making fewer overall visits to the business.
 
     ___These are the high-efficiency premium buyers. They spend a massive amount per transaction.___
         
@@ -198,6 +199,7 @@ st.markdown("---")
 # Customer spending Distribution
 st.subheader("💰 Customer Spending Distribution")
 
+st.write("The graph explains how customers are distributed into different categories based on thier total spendings.")
 customer_spending = (
         df.groupby("customer_id")["total_spent"]
         .sum()
@@ -239,3 +241,8 @@ with col2:
     st.markdown(f"**Key Spend Insights:**")
     st.markdown(f"* **Average Lifetime Spend:** ${avg_spend:,.2f} per customer.")
     st.markdown(f"* **Top VIP Customer:** `{max_spender['customer_id']}` has contributed a massive **${max_spender['total_spent']:,.2f}** in revenue!")
+    st.markdown(" Among the 25 total customers, the vast majority (10 customers) fall squarely under the \$60k - $62k spending category. " \
+                "While our top VIP customer pushes our mathematical average up, " \
+                "our core revenue stability relies on this tightly clustered group of consistent," \
+                " high-value mid-tier spenders.")
+    

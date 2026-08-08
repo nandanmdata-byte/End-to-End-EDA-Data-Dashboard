@@ -30,7 +30,7 @@ st.markdown("*Note: Use the sidebar or navigation bar at the end of page, to jum
 expanded_bar = st.expander("About")
 expanded_bar.markdown(""" 
 * **Python libraries:** pandas, numpy, streamlit, PIL
-* **Raw data source:** [Link for raw data source from kaggle](https://www.kaggle.com/datasets/ahmedmohamed2003/retail-store-sales-dirty-for-data-cleaning)                   
+* **Raw data source:** [*Retail Sales: Dirty Data for Cleaning* by Ahmed Mehmoud (Kaggle)](https://www.kaggle.com/datasets/ahmedmohamed2003/retail-store-sales-dirty-for-data-cleaning)                   
 * **Github link:** [End_to-End-EDA_Dashboard](https://github.com/nandanmdata-byte/End-to-End-EDA-Data-Dashboard.git)
 * *Note: The data used for reporting is a cleaned version of above raw data* """)
 
@@ -145,17 +145,19 @@ st.markdown(
 st.code("""
 End-to-End_EDA_Dashboard/
 │
-├── datasets/           # Raw and cleaned datasets
-    |__raw_datasets/
-    |__clean_datasets/    
-├── scripts/            # Data cleaning scripts
-├── docs/               # documentations
-├── pages/              # Streamlit pages
-├── assets/             # Images and icons
-├── data.py             # access to clean data source 
-├── app.py              # Main Streamlit application
-├── LICENSE             # MIT License
-└── README.md
+├── datasets/                 # Project data storage
+│   ├── raw_datasets/         # Original, unmodified Kaggle data
+│   └── clean_datasets/       # Processed, analysis-ready data
+│
+├── scripts/                  # Automated data cleaning Python scripts
+├── docs/                     # Project documentation & deep dives
+├── pages/                    # Multi-page Streamlit views
+├── assets/                   # Images, banners, and icons
+│
+├── data.py                   # Centralized clean data access layer
+├── app.py                    # Main Streamlit application entry point
+├── LICENSE                   # MIT License
+└── README.md                 # Project overview
 """, language="text")
 
 #=====================================================================================================================
@@ -172,7 +174,7 @@ st.markdown(
 st.markdown("""
 - **Programming Language:** Python
 - **Data Processing:** Pandas, NumPy
-- **Data Visualization:** Plotly
+- **Data Visualization:** Plotly Express
 - **Dashboard Framework:** Streamlit
 - **Development Environment:** VS Code, Pycharm
 - **Version Control:** Git & GitHub
@@ -220,11 +222,11 @@ You are free to use, modify, and distribute this project for personal or commerc
 
 #=====================================================================================================================
 
-st.markdown("---")
+st.markdown("<br><br>", unsafe_allow_html= True)
 st.markdown(
     "<div style='text-align: center; font-size: 28px; font-weight: bold;'>🫶 Thank you for visiting</div>",
     unsafe_allow_html=True
 )
-
+st.markdown("<br><br>", unsafe_allow_html= True)
 #=====================================================================================================================
 
